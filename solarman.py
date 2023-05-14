@@ -1,5 +1,3 @@
-__version__ = '0.1.0'
-
 import aiochclient
 import aiohttp
 import asyncio
@@ -17,6 +15,7 @@ uvloop.install()
 
 from concurrent.futures import ThreadPoolExecutor
 from pysolarmanv5 import PySolarmanV5Async, V5FrameError
+
 
 log = logging.getLogger('Exporter')
 
@@ -326,9 +325,11 @@ class Solarman:
         # Some modbus reads fail, so we need to retry them
         while True:
             try:
-                result = await modbus.read_input_register_formatted(register_addr=register_addr, quantity=quantity, scale=scale)
-
-            except (V5FrameError, struct.error, umodbus.exceptions.ModbusError) as e:
+                fut = modbus.read_input_register_formatted(register_addr=register_addr, quantity=quantity, scale=scale)
+                # It gets stuck waiting for a response sometimes even with socket_timeout
+                # so we need a manual async timeout here
+                result = await asyncio.wait_for(fut, timeout=modbus.socket_timeout)
+            except (TimeoutError, V5FrameError, struct.error, umodbus.exceptions.ModbusError) as e:
                 log.error(f'Failed to read register {register_addr}: {e}')
                 # It's most likely gonna return invalid values now, so sleep for a bit
                 await asyncio.sleep(1)
