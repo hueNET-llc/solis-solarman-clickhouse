@@ -1,0 +1,6 @@
+aiochclient
+aiohttp
+colorlog
+pysolarmanv5
+umodbus
+uvloop

@@ -1,0 +1,92 @@
+Documentation: https://diysolarforum.com/resources/solis-grid-tied-inverters-2018-rs485-modbus-communication-protocol.272/download
+
+Registers may vary depending on the model of the inverter. THe following is for a Solis single-phase, 3-MPPT 7.6kW Solis 4G Series B2 inverter.
+
+
+Register: 02999         Value: 00000178 (0x00b2)              - PRODUCT MODEL
+Register: 03000         Value: 00000024 (0x0018)              - DSP SOFTWARE VERSION (HEX)
+Register: 03001         Value: 00000053 (0x0035)              - LCD SOFTWARE (HEX)
+Register: 03002         Value: 00000000 (0x0000)              - AC OUTPUT TYPE (0=SINGLE, 1=3P4WIRES, 2=3P3WIRES, 3=3P4WIRES OR 3P3WIRES BOTH AVAILABLE)
+Register: 03003         Value: 00000003 (0x0003)              - DC INPUT TYPE (0=1 DC INPUT, 1 2=DC INPUT, 2=3 DC INPUT, ETC.)
+Register: 03004         Value: 00000000 (0x0000)              - AC POWER (1 W)
+Register: 03005         Value: 00001750 (0x06d6)              - AC POWER (1 W)
+Register: 03006         Value: 00000000 (0x0000)              - DC POWER (1 W)
+Register: 03007         Value: 00001855 (0x073f)              - DC POWER (1 W)
+Register: 03008         Value: 00000000 (0x0000)              - TOTAL YIELD (1 kWh)
+Register: 03009         Value: 00033528 (0x82f8)              - TOTAL YIELD (1 kWh)
+Register: 03010         Value: 00000000 (0x0000)              - THIS MONTH YIELD (1 kWh)
+Register: 03011         Value: 00000646 (0x0286)              - THIS MONTH YIELD (1 kWh)
+Register: 03012         Value: 00000000 (0x0000)              - PREVIOUS MONTH YIELD (1 kWh)
+Register: 03013         Value: 00000593 (0x0251)              - PREVIOUS MONTH YIELD (1 kWh)
+Register: 03014         Value: 00000489 (0x01e9)              - DAILY YIELD (1 kWh)
+Register: 03015         Value: 00000034 (0x0022)              - DAILY YIELD (1 kWh)
+Register: 03016         Value: 00000000 (0x0000)              - ANNUAL YIELD (1 kWh)
+Register: 03017         Value: 00001588 (0x0634)              - ANNUAL YIELD (1 kWh)
+Register: 03018         Value: 00000000 (0x0000)              - PREVIOUS ANNUAL YIELD (1 kWh)
+Register: 03019         Value: 00010747 (0x29fb)              - PREVIOUS ANNUAL YIELD (1 kWh)
+Register: 03020         Value: 00000000 (0x0000)              - RESERVED
+Register: 03021         Value: 00002146 (0x0862)              - DC 1 VOLTAGE (0.1 V)
+Register: 03022         Value: 00000017 (0x0011)              - DC 1 AMPS (0.1 A)
+Register: 03023         Value: 00002916 (0x0b64)              - DC 2 VOLTAGE (0.1 V)
+Register: 03024         Value: 00000026 (0x001a)              - DC 2 AMPS (0.1 A)
+Register: 03025         Value: 00003617 (0x0e21)              - DC 3 VOLTAGE (0.1 V)
+Register: 03026         Value: 00000021 (0x0015)              - DC 3 AMPS (0.1 A)
+Register: 03027         Value: 00000008 (0x0008)              - DC 4 VOLTAGE (0.1 V)
+Register: 03028         Value: 00000001 (0x0001)              - DC 4 AMPS (0.1 A)
+Register: 03029         Value: 00000000 (0x0000)              - RESERVED
+Register: 03030         Value: 00001984 (0x07c0)              - GROUND VOLTAGE (0.1 V)
+Register: 03031         Value: 00003997 (0x0f9d)              - DC BUSBAR VOLTAGE (0.1 V)
+Register: 03032         Value: 00000000 (0x0000)              - DC HALF-BUSBAR VOLTAGE (0.1 V)
+Register: 03033         Value: 00000000 (0x0000)              - AB LINE VOLTAGE / A PHASE VOLTAGE (0.1 V)
+Register: 03034         Value: 00000000 (0x0000)              - BC LINE VOLTAGE / B PHASE VOLTAGE (0.1 V)
+Register: 03035         Value: 00002420 (0x0974)              - CA LINE VOLTAGE / C PHASE VOLTAGE (SINGLE PHASE MAIN) (0.1 V)
+Register: 03036         Value: 00000000 (0x0000)              - A PHASE CURRENT (0.1 A)
+Register: 03037         Value: 00000000 (0x0000)              - B PHASE CURRENT (0.1 A)
+Register: 03038         Value: 00000075 (0x004b)              - C PHASE CURRENT (AC AMPS) (SINGLE PHASE MAIN) (0.1 A)
+Register: 03039         Value: 00000000 (0x0000)              - MASTER/SLAVE DSP UPGRADE SWITCH (00 MASTER DSP UPGRADE, 01 SLAVE DSP UPGRADE)
+Register: 03040         Value: 00000007 (0x0007)              - WORKING MODE (00=NO RESPONSE MODE, 01=VOLT-WATT DEFAULT, 02=VOLT-VAR, 03=FIXED POWER FACTOR, 04=FIX REACTIVE POWER, 05=POWER PF, 06=RULE21 VOLT-WATT)
+Register: 03041         Value: 00000219 (0x00db)              - INVERTER TEMPERATURE (0.1 CELSIUS)
+Register: 03042         Value: 00006002 (0x1772)              - GRID AC FREQUENCY (0.01 HZ)
+Register: 03043         Value: 00000003 (0x0003)              - STATUS (0-2 INIT, 3 READY OR ALERT)
+Register: 03044         Value: 00000000 (0x0000)              - LIMIT REACTIVE POWER ADJUSTMENT RATED POWER (1 W)
+Register: 03045         Value: 00000000 (0x0000)              - LIMIT REACTIVE POWER ADJUSTMENT RATED POWER (1 W)
+Register: 03046         Value: 00000000 (0x0000)              - LIMITED POWER ACTUAL VALUE (1 Var)
+Register: 03047         Value: 00000000 (0x0000)              - LIMITED POWER ACTUAL VALUE (1 Var)
+Register: 03048         Value: 00000000 (0x0000)              - INVERTER CONTROL WORD, 15K BELOW NO FUNCTION
+Register: 03049         Value: 00011000 (0x2af8)              - POWER LIMIT ACTUAL VALUE (1%) 
+Register: 03050         Value: 00001000 (0x03e8)              - ACTUAL ADJUST VALUE OF POWER FACTOR (0.01)
+Register: 03051         Value: 00001000 (0x03e8)              - ACTUAL ADJUST VALUE OF POWER FACTOR (0.01)
+Register: 03052         Value: 00000000 (0x0000)              - REACTIVE POWER LIMITATION (1%)
+Register: 03053         Value: 00000045 (0x002d)              - COUNTRY STANDARD CODE
+Register: 03054         Value: 00000004 (0x0004)              - POWER CURVE CODE (crossed out)
+Register: 03055         Value: 00000000 (0x0000)              - REACTIVE POWER (1 Var)
+Register: 03056         Value: 00000000 (0x0000)              - REACTIVE POWER (1 Var)
+Register: 03057         Value: 00000000 (0x0000)              - APPARENT POWER (AC APPARENT POWER) (1 VA)
+Register: 03058         Value: 00001740 (0x06cc)              - APPARENT POWER (AC APPARENT POWER) (1 VA)
+Register: 03059         Value: 00001000 (0x03e8)              - NOT LISTED
+Register: 03060         Value: 00000000 (0x0000)              - INVERTER SERIAL NUMBER
+Register: 03061         Value: 00000000 (0x0000)              - INVERTER SERIAL NUMBER 2
+Register: 03062         Value: 00000000 (0x0000)              - INVERTER SERIAL NUMBER 3
+Register: 03063         Value: 00000000 (0x0000)              - INVERTER SERIAL NUMBER 4
+Register: 03064         Value: 00000000 (0x0000)              - RESERVED
+Register: 03065         Value: 00000002 (0x0002)              - SETTING FLAG
+Register: 03066         Value: 00000000 (0x0000)              - FAULT CODE 01
+Register: 03067         Value: 00000000 (0x0000)              - FAULT CODE 02
+Register: 03068         Value: 00000000 (0x0000)              - FAULT CODE 03
+Register: 03069         Value: 00000000 (0x0000)              - FAULT CODE 04
+Register: 03070         Value: 00000000 (0x0000)              - FAULT CODE 05
+Register: 03071         Value: 00000001 (0x0001)              - WORKING STATUS
+Register: 03072         Value: 00000023 (0x0017)              - CLOCK YEAR
+Register: 03073         Value: 00000003 (0x0003)              - CLOCK MONTH
+Register: 03074         Value: 00000026 (0x001a)              - CLOCK DAY
+Register: 03075         Value: 00000015 (0x000f)              - CLOCK HOUR (24H)
+Register: 03076         Value: 00000056 (0x0038)              - CLOCK MINUTE
+Register: 03077         Value: 00000021 (0x0015)              - CLOCK SECOND
+Register: 03078         Value: 00000000 (0x0000)              - RESERVED
+Register: 03079         Value: 00000000 (0x0000)              - METER GENERATION (1 Wh)
+Register: 03080         Value: 00000000 (0x0000)              - METER GENERATION (1 Wh)
+Register: 03081         Value: 00000000 (0x0000)              - METER VOLTAGE (1 V)
+Register: 03082         Value: 00000000 (0x0000)              - METER CURRENT (1 A)
+Register: 03083         Value: 00000000 (0x0000)              - METER ACTIVE POWER (1 W)
+Register: 03084         Value: 00000000 (0x0000)              - METER ACTIVE POWER (1 W)
+Register: 03085         Value: 00000240 (0x00f0)              - LEAKED CURRENT THRESHOLD (1 mA)

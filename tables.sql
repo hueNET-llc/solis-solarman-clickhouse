@@ -1,0 +1,61 @@
+-- PLEASE NOTE
+-- Buffer tables are what I personally use to batch inserts
+-- You may have to modify them to work with your setup
+
+CREATE TABLE solis_solarman (
+    inverter LowCardinality(String),
+    inverter_temperature_celsius Float32,
+    inverter_efficiency_percent Float32,
+    dc_1_voltage Float32,
+    dc_1_amps Float32,
+    dc_1_watts UInt32,
+    dc_2_voltage Float32,
+    dc_2_amps Float32,
+    dc_2_watts UInt32,
+    dc_3_voltage Float32,
+    dc_3_amps Float32,
+    dc_3_watts UInt32,
+    dc_calculated_watts UInt32,
+    dc_actual_watts UInt32,
+    dc_busbar_voltage Float32,
+    ground_voltage Float32,
+    ac_apparent_watts UInt32,
+    ac_actual_watts UInt32,
+    ac_voltage Float32,
+    ac_amps Float32,
+    ac_frequency Float32,
+    kwh_day Float32,
+    kwh_month UInt32,
+    kwh_annual UInt32,
+    kwh_total UInt32,
+    time DateTime DEFAULT now()
+) ENGINE = MergeTree() PARTITION BY toYYYYMM(time) ORDER BY (inverter, time) PRIMARY KEY (inverter, time);
+
+CREATE TABLE solis_solarman_buffer (
+    inverter LowCardinality(String),
+    inverter_temperature_celsius Float32,
+    inverter_efficiency_percent Float32,
+    dc_1_voltage Float32,
+    dc_1_amps Float32,
+    dc_1_watts UInt32,
+    dc_2_voltage Float32,
+    dc_2_amps Float32,
+    dc_2_watts UInt32,
+    dc_3_voltage Float32,
+    dc_3_amps Float32,
+    dc_3_watts UInt32,
+    dc_calculated_watts UInt32,
+    dc_actual_watts UInt32,
+    dc_busbar_voltage Float32,
+    ground_voltage Float32,
+    ac_apparent_watts UInt32,
+    ac_actual_watts UInt32,
+    ac_voltage Float32,
+    ac_amps Float32,
+    ac_frequency Float32,
+    kwh_day Float32,
+    kwh_month UInt32,
+    kwh_annual UInt32,
+    kwh_total UInt32,
+    time DateTime DEFAULT now()
+) ENGINE = Buffer(homelab, solis_solarman, 1, 10, 10, 10, 100, 10000, 10000);
