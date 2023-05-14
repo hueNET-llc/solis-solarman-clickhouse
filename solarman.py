@@ -35,8 +35,6 @@ class Solarman:
         # Queue of data waiting to be inserted into ClickHouse
         self.clickhouse_queue: asyncio.Queue = asyncio.Queue(maxsize=self.clickhouse_queue_limit)
 
-        self.last_reading: dict[int, int | float] = {}
-
         # Event used to stop the loop
         self.stop_event: asyncio.Event = asyncio.Event()
 
@@ -341,6 +339,7 @@ class Solarman:
     # Returns either a float or None
     async def read_input_register(self, modbus:PySolarmanV5Async, register_addr:int, quantity:int, scale:float=1.0) -> float:
         # Some modbus reads fail, so we need to retry them
+        tries = 0
         while True:
             try:
                 fut = modbus.read_input_register_formatted(register_addr=register_addr, quantity=quantity, scale=scale)
@@ -348,12 +347,16 @@ class Solarman:
                 # so we need a manual async timeout here
                 result = await asyncio.wait_for(fut, timeout=modbus.socket_timeout)
             except (TimeoutError, V5FrameError, struct.error, umodbus.exceptions.ModbusError) as e:
+                # Increment the tries counter
+                tries += 1
                 log.error(f'Failed to read register {register_addr}: {e}')
-                # It's most likely gonna return invalid values now, so sleep for a bit
-                await asyncio.sleep(1)
-                continue
-
-            self.last_reading[register_addr] = result
+                # Give up after 3 attempts and pass the exception up
+                if tries >= 3:
+                    raise e
+                else:
+                    # Sleep so we don't spam the modbus server too hard
+                    await asyncio.sleep(1)
+                    continue
 
             return result
 
