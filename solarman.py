@@ -14,7 +14,7 @@ import uvloop
 uvloop.install()
 
 from concurrent.futures import ThreadPoolExecutor
-from pysolarmanv5 import PySolarmanV5Async, V5FrameError
+from pysolarmanv5 import PySolarmanV5Async, V5FrameError, NoSocketAvailableError
 
 
 log = logging.getLogger('Exporter')
@@ -311,7 +311,7 @@ class Solarman:
                 # Insert the data into the ClickHouse queue
                 self.clickhouse_queue.put_nowait(data)
 
-            except RuntimeError:
+            except (RuntimeError, NoSocketAvailableError):
                 # The reader socket was closed, we need to create a new modbus instance
                 log.warning(f'Reader socket was closed, reconnecting to target "{inverter["name"]}" at IP "{inverter["ip"]}"')
                 modbus = PySolarmanV5Async(
