@@ -235,7 +235,7 @@ class Solarman:
                     mb_slave_id=inverter['mb_slave_id'],
                     socket_timeout=inverter['timeout'],
                     v5_error_correction=inverter['error_correction'],
-                    auto_reconnect=True,
+                    auto_reconnect=False,
                     logger=logging.getLogger('pysolarmanv5')
                 )
                 # Connect the modbus and start the reader loop
@@ -321,7 +321,7 @@ class Solarman:
                     mb_slave_id=inverter['mb_slave_id'],
                     socket_timeout=inverter['timeout'],
                     v5_error_correction=inverter['error_correction'],
-                    auto_reconnect=True,
+                    auto_reconnect=False,
                     logger=logging.getLogger('pysolarmanv5')
                 )
                 try:
